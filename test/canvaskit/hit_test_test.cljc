@@ -13,6 +13,12 @@
   (is (ht/point-inside? [0.0 0.0 10.0 10.0] [10.0 10.0]))
   (is (not (ht/point-inside? [0.0 0.0 10.0 10.0] [10.1 5.0]))))
 
+(deftest rect-intersects
+  (is (ht/rect-intersects? [0.0 0.0 10.0 10.0] [5.0 5.0 10.0 10.0]))
+  (is (not (ht/rect-intersects? [0.0 0.0 10.0 10.0] [20.0 0.0 10.0 10.0])))
+  (testing "edge-touching rects do not intersect (CGRect semantics)"
+    (is (not (ht/rect-intersects? [0.0 0.0 10.0 10.0] [10.0 0.0 10.0 10.0])))))
+
 (deftest hit-test-topmost
   (testing "highest z-position wins"
     (is (= :b (:id (ht/hit-test views [60.0 60.0])))))
