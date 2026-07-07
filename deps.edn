@@ -1,0 +1,13 @@
+{:paths ["src"]
+ ;; Zero third-party runtime deps — every namespace is portable .cljc
+ ;; (JVM, CLJS, SCI, babashka). Pure viewport/interaction math only: no DOM,
+ ;; no rendering, no host effects (same split as shitsuke / dot / freeboard).
+ ;; Consumers wire pointer/wheel events in and consume plain data out.
+ ;; See 90-docs/adr/2607071130-kotoba-lang-canvaskit-scroll-view-consolidation.md.
+ :deps {}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}}}
