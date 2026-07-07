@@ -12,6 +12,12 @@
   [[x y w h] [px py]]
   (and (<= x px (+ x w)) (<= y py (+ y h))))
 
+(defn rect-intersects?
+  "CGRectIntersectsRect — 2つの frame [x y w h] が重なるか(辺だけ接する場合は
+   false、CGRect と同じ)。box-select / marquee の判定に使う。"
+  [[ax ay aw ah] [bx by bw bh]]
+  (and (< ax (+ bx bw)) (< bx (+ ax aw)) (< ay (+ by bh)) (< by (+ ay ah))))
+
 (defn hit-test
   "content 点に当たる最前面の view(map)を返す。無ければ nil。"
   [views content-point]
