@@ -41,6 +41,16 @@
       (is (v≈ (sv/convert-point-from-view s (:location g1))
               (sv/convert-point-from-view s' (:location g1)))))))
 
+(deftest pinch-began-with-coincident-touch-points-does-not-divide-by-zero
+  (testing "a pinch that began with both touch points at the same location
+            (initial-distance 0.0, degenerate input) holds scale at 1.0
+            instead of throwing"
+    (let [g0 (g/pinch-began [[50.0 50.0] [50.0 50.0]])]
+      (is (≈ 0.0 (:initial-distance g0)))
+      (let [g1 (g/pinch-changed g0 [[60.0 60.0] [60.0 60.0]])]
+        (is (≈ 1.0 (:scale g1)))
+        (is (v≈ [60.0 60.0] (:location g1)))))))
+
 (deftest wheel-zoom
   (is (≈ 2.0 (g/wheel-zoom-scale 1.0 -500.0)))
   (is (≈ 0.5 (g/wheel-zoom-scale 1.0 500.0)))
