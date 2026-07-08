@@ -58,7 +58,11 @@
 (defn pinch-changed [{:keys [initial-distance] :as g} [p1 p2]]
   (assoc g
          :state :changed
-         :scale (/ (distance p1 p2) initial-distance)
+         ;; A pinch that began with both touch points coincident has
+         ;; initial-distance 0.0 -- degenerate input a real touchscreen won't
+         ;; produce, but nothing upstream guards against it. Hold scale at 1.0
+         ;; (no zoom) rather than dividing by zero.
+         :scale (if (zero? initial-distance) 1.0 (/ (distance p1 p2) initial-distance))
          :location (midpoint p1 p2)))
 
 (defn pinch-ended [g] (assoc g :state :ended))
