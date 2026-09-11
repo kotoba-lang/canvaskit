@@ -94,5 +94,5 @@ world↔screen / hit-test)が**コピーで重複**していた(ADR-2607071130 �
 ## Verify
 
 ```sh
-clojure -M:test
+kbb -M:test
 ```
