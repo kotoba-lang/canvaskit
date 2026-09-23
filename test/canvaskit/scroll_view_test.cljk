@@ -1,5 +1,5 @@
 (ns canvaskit.scroll-view-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [canvaskit.scroll-view :as sv]))
 
 (defn- ≈ [a b] (< (abs (- a b)) 1e-9))
