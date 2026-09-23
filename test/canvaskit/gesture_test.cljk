@@ -1,5 +1,5 @@
 (ns canvaskit.gesture-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [canvaskit.gesture :as g]
             [canvaskit.scroll-view :as sv]))
 

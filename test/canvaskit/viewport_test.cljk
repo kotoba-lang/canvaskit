@@ -1,5 +1,5 @@
 (ns canvaskit.viewport-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [canvaskit.viewport :as vp]
             [canvaskit.scroll-view :as sv]))
 
